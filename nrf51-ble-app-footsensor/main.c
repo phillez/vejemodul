@@ -65,7 +65,7 @@ ble_fs_t m_footsensor_service;
 // Declare an app_timer id variable and define our timer interval and define a timer interval
 APP_TIMER_DEF(m_adc_sampling_timer_id);
 
-#define FOOTSENSOR_ADC_SAMPLING_INTERVAL   APP_TIMER_TICKS(500, APP_TIMER_PRESCALER)
+#define FOOTSENSOR_ADC_SAMPLING_INTERVAL   APP_TIMER_TICKS(200, APP_TIMER_PRESCALER)
 
 #define ADC_VALUE_IN_MILLI_VOLTS(ADC_VALUE)\
 	(((ADC_VALUE) * ADC_REF_VOLTAGE_IN_MILLI_VOLTS) / ADC_RES_10BIT)
@@ -101,8 +101,6 @@ void adc_event_handler(nrf_drv_adc_evt_t const * p_event)
 		nrf_adc_value_t left_sensor_value;
 		nrf_adc_value_t right_sensor_value;
 
-		uint8_t front_in_milli_volts;
-
 		uint32_t err_code;
 
 		front_sensor_value = p_event->data.done.p_buffer[0];
@@ -110,12 +108,10 @@ void adc_event_handler(nrf_drv_adc_evt_t const * p_event)
 		left_sensor_value = p_event->data.done.p_buffer[2];	
 		right_sensor_value = p_event->data.done.p_buffer[3];
 
-		front_in_milli_volts = ADC_VALUE_IN_MILLI_VOLTS(front_sensor_value);
-
 		err_code = nrf_drv_adc_buffer_convert(p_event->data.done.p_buffer, 4);
 		APP_ERROR_CHECK(err_code);
 
-		footsensor_front_update(&m_footsensor_service, front_in_milli_volts);
+		footsensor_front_update(&m_footsensor_service, front_sensor_value);
 		footsensor_back_update(&m_footsensor_service, back_sensor_value);
 		footsensor_left_update(&m_footsensor_service, left_sensor_value);
 		footsensor_right_update(&m_footsensor_service, right_sensor_value);

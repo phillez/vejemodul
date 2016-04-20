@@ -48,12 +48,16 @@ static uint32_t footsensor_front_char_add(ble_fs_t * p_footsensor_service)
 
     // Configuring Client Characteristic Configuration Descriptor metadata and add to char_md structure
     ble_gatts_attr_md_t cccd_md;
+    char user_desc[] = "Front sensor";
     memset(&cccd_md, 0, sizeof(cccd_md));
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     cccd_md.vloc                = BLE_GATTS_VLOC_STACK;    
     char_md.p_cccd_md           = &cccd_md;
     char_md.char_props.notify   = 1;
+    char_md.p_char_user_desc  = (uint8_t *) user_desc;
+    char_md.char_user_desc_size = strlen(user_desc);
+    char_md.char_user_desc_max_size = strlen(user_desc);
 
     // Configure the attribute metadata
     ble_gatts_attr_md_t attr_md;
@@ -107,13 +111,17 @@ static uint32_t footsensor_back_char_add(ble_fs_t * p_footsensor_service)
     
     // Configuring Client Characteristic Configuration Descriptor metadata and add to char_md structure
     ble_gatts_attr_md_t cccd_md;
+    char user_desc[] = "Back sensor";
     memset(&cccd_md, 0, sizeof(cccd_md));
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     cccd_md.vloc                = BLE_GATTS_VLOC_STACK;    
     char_md.p_cccd_md           = &cccd_md;
     char_md.char_props.notify   = 1;
-    
+    char_md.p_char_user_desc  = (uint8_t *) user_desc;
+    char_md.char_user_desc_size = strlen(user_desc);
+    char_md.char_user_desc_max_size = strlen(user_desc);
+
     // Configure the attribute metadata
     ble_gatts_attr_md_t attr_md;
     memset(&attr_md, 0, sizeof(attr_md));
@@ -165,6 +173,7 @@ static uint32_t footsensor_left_char_add(ble_fs_t * p_footsensor_service)
     char_md.char_props.read = 1;
     
     // Configuring Client Characteristic Configuration Descriptor metadata and add to char_md structure
+    char user_desc[] = "Left sensor";
     ble_gatts_attr_md_t cccd_md;
     memset(&cccd_md, 0, sizeof(cccd_md));
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
@@ -172,7 +181,10 @@ static uint32_t footsensor_left_char_add(ble_fs_t * p_footsensor_service)
     cccd_md.vloc                = BLE_GATTS_VLOC_STACK;    
     char_md.p_cccd_md           = &cccd_md;
     char_md.char_props.notify   = 1;
-    
+    char_md.p_char_user_desc  = (uint8_t *) user_desc;
+    char_md.char_user_desc_size = strlen(user_desc);
+    char_md.char_user_desc_max_size = strlen(user_desc);
+
     // Configure the attribute metadata
     ble_gatts_attr_md_t attr_md;
     memset(&attr_md, 0, sizeof(attr_md));
@@ -225,13 +237,17 @@ static uint32_t footsensor_right_char_add(ble_fs_t * p_footsensor_service)
     
     // Configuring Client Characteristic Configuration Descriptor metadata and add to char_md structure
     ble_gatts_attr_md_t cccd_md;
+    char user_desc[] = "Right sensor";
     memset(&cccd_md, 0, sizeof(cccd_md));
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     cccd_md.vloc                = BLE_GATTS_VLOC_STACK;    
     char_md.p_cccd_md           = &cccd_md;
     char_md.char_props.notify   = 1;
-    
+    char_md.p_char_user_desc  = (uint8_t *) user_desc;
+    char_md.char_user_desc_size = strlen(user_desc);
+    char_md.char_user_desc_max_size = strlen(user_desc);
+
     // Configure the attribute metadata
     ble_gatts_attr_md_t attr_md;
     memset(&attr_md, 0, sizeof(attr_md));
