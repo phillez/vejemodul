@@ -1,4 +1,0 @@
-loadbin _build/nrf51422_xxac_s130.bin 0001b000
-r
-g
-exit
